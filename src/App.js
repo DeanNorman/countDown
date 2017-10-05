@@ -5,7 +5,6 @@ const Wrapper = styled.div`
   display:flex;
   justify-content: center;
   flex-wrap:  wrap;
-  
   background: #00ECB9;
   font-family: sans-serif;
   font-weight:100;
@@ -39,12 +38,9 @@ const TimeContainer = styled.div`
 `;
 
 const TimeValue = styled.div`
-  
-  
   padding:15px;
   border-radius:3px;
   background: #00816A;
- 
 `;
 
 const TimeText = styled.div`
@@ -57,8 +53,8 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title>You'll be cuddling with Johanna in:</Title>
         <ClockDiv id="clockdiv">
+          <Title>Count down</Title>
           <TimeContainer>
             <TimeValue class="days"></TimeValue>
             <TimeText class="smalltext">Days</TimeText>

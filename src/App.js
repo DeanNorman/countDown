@@ -50,16 +50,18 @@ const TimeText = styled.div`
 
 class App extends Component {
 state = {
-  endtime: '2017-12-8',
+  // endtime: '2017-12-8',
 }
 
-  getTimeRemaining = (endtime) => {
+
+ componentDidMount() {
+  function getTimeRemaining(endtime) {
     const time = Date.parse(endtime) - Date.parse(new Date());
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
     const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((time / 1000 / 60) % 60 );
+    const minutes = Math.floor((time / 1000 / 60) % 60);
     const seconds = Math.floor((time / 1000) % 60);
-    
+
     return {
       time: time,
       days: days,
@@ -70,48 +72,55 @@ state = {
   }
 
 
+  function initializeClock(id, endtime) {
+    var clock = document.getElementById(id);
+    var daysDiv = clock.querySelector('#days');
+    var hoursDiv = clock.querySelector('#hours');
+    var minutesDiv = clock.querySelector('#minutes');
+    var secondsDiv = clock.querySelector('#seconds');
 
-  render() {
-    function updateClock(endtime) {
-      var t = this.getTimeRemaining(this.state.endtime);
+    function updateClock() {
+      var t = getTimeRemaining(endtime);
+
+      daysDiv.innerHTML = t.days;
+      hoursDiv.innerHTML = ('0' + t.hours).slice(-2);
+      minutesDiv.innerHTML = ('0' + t.minutes).slice(-2);
+      secondsDiv.innerHTML = ('0' + t.seconds).slice(-2);
 
       if (t.total <= 0) {
         clearInterval(timeinterval);
       }
     }
-    var timeinterval = setInterval(updateClock, 1000);
-    console.log(timeinterval)
+
+    updateClock();
+     var timeinterval = setInterval(updateClock, 1000);
+
+  }
+    var deadline = '2017-12-8';
+    initializeClock('clockdiv', deadline);
+ }
+
+render() {
     return (
       <Wrapper>
         <Title> Parse Time </Title>
         <ClockDiv id="clockdiv">
           <TimeContainer>
-            <TimeValue class="days">
-              {
-                (this.getTimeRemaining('2017-12-8').days)
-              }
-            </TimeValue>
-            <TimeText class="smalltext">Days</TimeText>
+            <TimeValue id="days"></TimeValue>
+            <TimeText id="smalltext">Days</TimeText>
           </TimeContainer>
           <TimeContainer>
-            <TimeValue class="hours">
-              {this.getTimeRemaining('2017-12-8').hours}
-            </TimeValue>
-            <TimeText class="smalltext">Hours</TimeText>
+            <TimeValue id="hours"></TimeValue>
+            <TimeText id="smalltext">Hours</TimeText>
           </TimeContainer>
           <TimeContainer>
-            <TimeValue class="minutes">
-              {this.getTimeRemaining('2017-12-8').minutes}
-            </TimeValue>
-            <TimeText class="smalltext">Minutes</TimeText>
+            <TimeValue id="minutes"></TimeValue>
+            <TimeText id="smalltext">Minutes</TimeText>
           </TimeContainer>
           <TimeContainer>
-            <TimeValue class="seconds">
-              {this.getTimeRemaining('2017-12-8').seconds}
-            </TimeValue>
-            <TimeText class="smalltext">Seconds</TimeText>
-          </TimeContainer>
-          
+            <TimeValue id="seconds"></TimeValue>
+            <TimeText id="smalltext">Seconds</TimeText>
+          </TimeContainer>     
         </ClockDiv>
       </Wrapper>
     );

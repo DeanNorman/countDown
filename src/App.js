@@ -71,7 +71,6 @@ state = {
     }
   }
 
-
   function initializeClock(id, endtime) {
     var clock = document.getElementById(id);
     var daysDiv = clock.querySelector('#days');

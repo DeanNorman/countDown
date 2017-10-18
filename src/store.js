@@ -16,9 +16,10 @@ restclient.get(fxml_url + 'MetarEx', {
    password: apiKey,
    query: { airport: 'KAUS', howMany: 1 }
 }).on('success', function (result, response) {
-    util.puts(util.inspect(result, true, null));
+   // util.puts(util.inspect(result, true, null));
    var entry = result.MetarExResult.metar[0];
    util.puts('The temperature at ' + entry.airport + ' is ' + entry.temp_air + 'C');
+   console.log(response);
 });
 
 restclient.get(fxml_url + 'Enroute', {

@@ -1,2 +1,2 @@
 countdown made with react
-todo: add flight api
+Create richer animations on load. 

@@ -102,7 +102,7 @@ state = {
 render() {
     return (
       <Wrapper>
-        <Title> Parse Time </Title>
+        <Title> Jo <3 </Title>
         <ClockDiv id="clockdiv">
           <TimeContainer>
             <TimeValue id="days"></TimeValue>
